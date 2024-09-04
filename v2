@@ -29,7 +29,7 @@ public static List<FieldSchema> ParseSchema(string schemaText)
         var index = int.Parse(parts[0].Trim());
         var name = parts[1].Trim();
         var type = parts[2].Trim()[0];
-        var length = !string.IsNullOrWhiteSpace(parts[3]) ? (int?)int.Parse(parts[3].Replace("*", "").Trim()) : null;
+        var length = (parts[3].Trim() != "-" && !string.IsNullOrWhiteSpace(parts[3])) ? (int?)int.Parse(parts[3].Replace("*", "").Trim()) : null;
         var delimiter = parts.Length > 4 ? parts[4].Trim() : "";
         var allowedValues = parts.Length > 5 && !string.IsNullOrWhiteSpace(parts[5]) 
                             ? parts[5].Split(';').ToList() 
